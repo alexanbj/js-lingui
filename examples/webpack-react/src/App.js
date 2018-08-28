@@ -1,10 +1,8 @@
 import * as React from "react"
 
 import { I18nProvider, Trans, i18nMark } from "@lingui/react"
-import NeverUpdate from "./Usecases/NeverUpdate"
-import Children from "./Usecases/Children"
-import ElementAttributes from "./Usecases/ElementAttributes"
-import Formats from "./Usecases/Formats"
+import RenderPropBug from './RenderPropBug';
+
 
 const languages = {
   en: i18nMark("English"),
@@ -55,38 +53,7 @@ class App extends React.Component {
           catalogs={catalogs}
           languageData={languageData}
         >
-          <ul>
-            {Object.keys(languages).map(language => (
-              <li key={language}>
-                <a onClick={() => this.setState({ language })}>
-                  <Trans id={languages[language]} />
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <h2>
-            <Trans>Translation of children</Trans>
-          </h2>
-          <Children />
-
-          <h2>
-            <Trans>Translation of element attributes</Trans>
-          </h2>
-          <ElementAttributes />
-
-          <h2>
-            <Trans>Formats</Trans>
-          </h2>
-          <Formats />
-
-          <h2>
-            <Trans>Translations wrapped in component which never updates</Trans>
-          </h2>
-          <NeverUpdate>
-            <Children />
-            <ElementAttributes />
-          </NeverUpdate>
+        <RenderPropBug />
         </I18nProvider>
       </div>
     )
